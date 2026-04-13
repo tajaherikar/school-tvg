@@ -76,6 +76,18 @@
       font-size: 0.82rem;
     }
 
+    /* ---- Smooth touch scroll on iOS ---- */
+    .table-wrapper { -webkit-overflow-scrolling: touch; }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 575.98px) {
+      .navbar-brand { font-size: 0.78rem !important; letter-spacing: -0.01em; }
+      .res-table th, .res-table td { font-size: 0.72rem; padding: 3px 4px; }
+      .sticky-2 { min-width: 120px; }
+      .marks-input { width: 48px; font-size: 0.72rem; }
+      .formula-box { font-size: 0.75rem; }
+    }
+
     @media print {
       .no-print { display: none !important; }
       body { font-size: 9px; }
@@ -127,7 +139,7 @@
         <div class="col-auto">
           <button class="btn btn-success btn-sm px-3" onclick="loadTable()">Load / Refresh</button>
         </div>
-        <div class="col-auto ms-auto d-flex gap-2">
+        <div class="col-12 col-sm-auto mt-2 mt-sm-0 ms-sm-auto d-flex flex-wrap gap-2">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStudentModal">+ Student</button>
           <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#bulkModal">Bulk Import</button>
           <button class="btn btn-outline-info btn-sm" onclick="importFromAttendance()" title="Import students already saved in Attendance sheet for this class">Import from Attendance</button>

@@ -59,6 +59,23 @@
     .pct-warn   { color: #fd7e14; font-weight: 700; }
     .pct-bad    { color: #dc3545; font-weight: 700; }
 
+    /* ---- Smooth touch scroll on iOS ---- */
+    .table-wrapper { -webkit-overflow-scrolling: touch; }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 575.98px) {
+      .navbar-brand { font-size: 0.78rem !important; letter-spacing: -0.01em; }
+      .table-wrapper { max-height: calc(100vh - 370px); min-height: 180px; }
+      .att-table th, .att-table td { font-size: 0.7rem; padding: 3px 3px; }
+      .date-th { min-width: 30px; }
+      .sticky-2 { min-width: 110px; }
+      .col-summary { min-width: 38px; }
+      /* Bigger touch targets for attendance cells */
+      .att-table td.mark-P,
+      .att-table td.mark-A,
+      .att-table td.mark-empty { min-width: 32px; height: 32px; }
+    }
+
     @media print {
       .no-print { display: none !important; }
       .table-wrapper { overflow: visible; max-height: none; border: none; }
@@ -121,7 +138,7 @@
         <div class="col-auto">
           <button class="btn btn-primary btn-sm px-3" onclick="loadTable()">Load / Refresh</button>
         </div>
-        <div class="col-auto ms-auto d-flex gap-2">
+        <div class="col-12 col-sm-auto mt-2 mt-sm-0 ms-sm-auto d-flex flex-wrap gap-2">
           <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStudentModal">+ Student</button>
           <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#bulkModal">Bulk Import</button>
           <button class="btn btn-success btn-sm" onclick="exportExcel()">⬇ Excel</button>
@@ -142,7 +159,7 @@
           <button class="btn btn-sm btn-outline-danger" onclick="bulkMark('A')">All Absent</button>
           <button class="btn btn-sm btn-outline-secondary" onclick="bulkMark('')">Clear Day</button>
         </div>
-        <div class="col-auto ms-auto">
+        <div class="col-auto ms-auto d-none d-md-block">
           <small class="text-muted">💡 Click a date header to cycle: Working → <span class="badge bg-info text-dark">Period</span> → <span class="badge bg-warning text-dark">G.H.</span> → Working</small>
         </div>
       </div>
