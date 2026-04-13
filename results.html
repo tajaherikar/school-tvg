@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Results — 2026-27</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <style>
+    body { font-family: sans-serif; }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+    }
+    .res-table {
+      border-collapse: collapse;
+      width: max-content;
+      min-width: 100%;
+    }
+    .res-table th, .res-table td {
+      padding: 5px 7px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.82rem;
+      border: 1px solid #dee2e6;
+      white-space: nowrap;
+    }
+    .sticky-1 { position: sticky; left: 0; z-index: 2; background: #f8f9fa; min-width: 48px; }
+    .sticky-2 { position: sticky; left: 48px; z-index: 2; background: #f8f9fa; min-width: 170px; text-align: left !important; padding-left:8px !important; }
+    thead th { position: sticky; top: 0; z-index: 3; background: #343a40; color: #fff; }
+    thead th.sticky-1, thead th.sticky-2 { z-index: 5; background: #343a40; }
+
+    .marks-input {
+      width: 58px;
+      border: none;
+      background: transparent;
+      text-align: center;
+      font-size: 0.82rem;
+      padding: 0;
+      outline: none;
+    }
+    .marks-input:focus { background: #fff9c4; border-radius: 3px; }
+    .marks-input:invalid { background: #fde8e8; }
+
+    .col-conv  { background: #e8f5e9 !important; font-weight: 600; }
+    .col-total { background: #e3f2fd !important; font-weight: 700; font-size: 0.9rem !important; }
+    .col-grade { font-weight: 700; font-size: 0.9rem !important; }
+    .col-pass  { color: #198754; }
+    .col-fail  { color: #dc3545; }
+
+    .grade-O  { color: #7b1fa2; }
+    .grade-Aplus { color: #1565c0; }
+    .grade-A  { color: #0277bd; }
+    .grade-Bplus { color: #00838f; }
+    .grade-B  { color: #2e7d32; }
+    .grade-C  { color: #1b5e20; }
+    .grade-D  { color: #e65100; }
+    .grade-F  { color: #b71c1c; font-weight: 700; }
+
+    tfoot td { background: #f0f4f8; font-weight: 600; }
+
+    .section-head th {
+      background: #495057 !important;
+      color: #dee2e6;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .formula-box {
+      background: #fff9c4;
+      border: 1px solid #ffc107;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { font-size: 9px; }
+      .table-wrapper { overflow: visible; border: none; }
+      .res-table th, .res-table td { padding: 2px 3px; font-size: 7px; }
+      .sticky-1, .sticky-2 { position: static !important; }
+      thead th { position: static !important; background: #333 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================================================== NAVBAR -->
+<nav class="navbar navbar-dark py-1 no-print" style="background:#166534;">
+  <div class="container-fluid">
+    <a href="index.html" class="text-white text-decoration-none small">← Home</a>
+    <span class="navbar-brand mx-auto mb-0 fw-bold">SA-I &amp; SA-II Examination Results — 2026-27</span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- ===================================================== CONTROLS -->
+<div class="container-fluid py-2 no-print">
+  <div class="card shadow-sm border-0">
+    <div class="card-body py-2">
+
+      <div class="row g-2 align-items-end flex-wrap">
+        <div class="col-auto">
+          <label class="form-label small mb-1 fw-semibold">Class</label>
+          <select id="classSelect" class="form-select form-select-sm" style="width:72px">
+            <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <label class="form-label small mb-1 fw-semibold">Section</label>
+          <input id="sectionInput" class="form-control form-control-sm" style="width:64px" placeholder="A" maxlength="2" value="A">
+        </div>
+        <div class="col-auto">
+          <label class="form-label small mb-1 fw-semibold">Subject</label>
+          <input id="subjectInput" class="form-control form-control-sm" style="width:140px" placeholder="e.g. Mathematics">
+        </div>
+        <div class="col-auto">
+          <label class="form-label small mb-1 fw-semibold">Exam</label>
+          <select id="examSelect" class="form-select form-select-sm" style="width:100px">
+            <option value="SA1">SA-I</option>
+            <option value="SA2">SA-II</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-success btn-sm px-3" onclick="loadTable()">Load / Refresh</button>
+        </div>
+        <div class="col-auto ms-auto d-flex gap-2">
+          <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addStudentModal">+ Student</button>
+          <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#bulkModal">Bulk Import</button>
+          <button class="btn btn-outline-info btn-sm" onclick="importFromAttendance()" title="Import students already saved in Attendance sheet for this class">Import from Attendance</button>
+          <button class="btn btn-success btn-sm" onclick="exportExcel()">⬇ Excel</button>
+          <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨 Print</button>
+        </div>
+      </div>
+
+      <!-- Formula reminder -->
+      <div class="formula-box p-2 mt-2 d-flex flex-wrap gap-3 align-items-center">
+        <strong class="text-muted small">Formula:</strong>
+        <span class="small">FA1: <code>raw/20 × 10</code></span>
+        <span class="small">FA2: <code>raw/20 × 10</code></span>
+        <span class="small">SA1: <code>raw/40 × 20</code></span>
+        <span class="small">Oral: direct <code>/10</code></span>
+        <span class="fw-bold small">= Total <code>/50</code></span>
+        <span class="ms-3 text-muted small">Pass mark: 35% = <strong>17.5 / 50</strong></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== PRINT HEADER -->
+<div class="d-none d-print-block text-center mb-2">
+  <h5 id="printHeader" class="mb-0"></h5>
+  <small class="text-muted">Academic Year 2026-27</small>
+</div>
+
+<!-- ===================================================== TABLE -->
+<div class="container-fluid px-2">
+  <div class="table-wrapper">
+    <table class="res-table" id="resTable">
+      <thead id="resHead"></thead>
+      <tbody id="resBody"></tbody>
+      <tfoot id="resFoot"></tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- ===================================================== SUMMARY -->
+<div class="container-fluid py-2 no-print">
+  <div id="summaryBox" class="d-flex flex-wrap gap-3"></div>
+</div>
+
+<!-- ===================================================== GRADE LEGEND -->
+<div class="container-fluid pb-3 no-print">
+  <div class="d-flex flex-wrap gap-2 small">
+    <span class="badge bg-light text-dark border">Grade: </span>
+    <span class="grade-O fw-bold">O ≥91%</span>
+    <span class="grade-Aplus fw-bold">A+ 81-90%</span>
+    <span class="grade-A fw-bold">A 71-80%</span>
+    <span class="grade-Bplus fw-bold">B+ 61-70%</span>
+    <span class="grade-B fw-bold">B 51-60%</span>
+    <span class="grade-C fw-bold">C 41-50%</span>
+    <span class="grade-D fw-bold">D 35-40%</span>
+    <span class="grade-F fw-bold">F &lt;35% (Fail)</span>
+    <span class="text-muted ms-2">| Cell turns red if marks exceed maximum</span>
+  </div>
+</div>
+
+<!-- ===================================================== ADD STUDENT MODAL -->
+<div class="modal fade" id="addStudentModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Student</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Roll No</label>
+          <input type="number" id="newRollNo" class="form-control" placeholder="e.g. 1" min="1">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Student Name</label>
+          <input type="text" id="newStudentName" class="form-control" placeholder="Full Name">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="addStudent()">Add Student</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== BULK IMPORT MODAL -->
+<div class="modal fade" id="bulkModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Bulk Import Students</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted small mb-1">One student per line. Format: <code>RollNo, Name</code> or just <code>Name</code></p>
+        <textarea id="bulkText" class="form-control font-monospace" rows="12"
+          placeholder="1, Aarav Sharma&#10;2, Priya Patel&#10;3, Rahul Kumar&#10;..."></textarea>
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="replaceCheck">
+          <label class="form-check-label text-danger" for="replaceCheck">
+            ⚠ Replace existing student list (will also clear saved marks for this class-section)
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="bulkImport()">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ==============================================================
+// STATE
+// ==============================================================
+let students = []; // [{id, rollNo, name}]
+let marks    = {}; // {studentId: {fa1:'', fa2:'', sa1:'', oral:''}}
+
+// ==============================================================
+// STORAGE KEYS
+// ==============================================================
+function classKey() {
+  const cls = document.getElementById('classSelect').value;
+  const sec = (document.getElementById('sectionInput').value.trim() || 'A').toUpperCase();
+  return cls + '_' + sec;
+}
+
+function examKey() {
+  return document.getElementById('examSelect').value; // SA1 or SA2
+}
+
+function sKey(type) {
+  // Students key is shared with attendance tool (same classKey format)
+  if (type === 'students') return 'tvg_res_students_' + classKey();
+  if (type === 'marks')    return 'tvg_res_marks_'    + classKey() + '_' + examKey();
+}
+
+function nextId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+}
+
+function esc(t) {
+  const d = document.createElement('div');
+  d.appendChild(document.createTextNode(String(t || '')));
+  return d.innerHTML;
+}
+
+// ==============================================================
+// LOAD / SAVE
+// ==============================================================
+function loadData() {
+  students = JSON.parse(localStorage.getItem(sKey('students')) || '[]');
+  marks    = JSON.parse(localStorage.getItem(sKey('marks'))    || '{}');
+}
+
+function saveStudents() {
+  localStorage.setItem(sKey('students'), JSON.stringify(students));
+}
+
+function saveMarks() {
+  localStorage.setItem(sKey('marks'), JSON.stringify(marks));
+}
+
+// ==============================================================
+// CALC HELPERS
+// ==============================================================
+function calcRow(fa1Raw, fa2Raw, sa1Raw, oralRaw) {
+  const fa1 = parseFloat(fa1Raw) || 0;
+  const fa2 = parseFloat(fa2Raw) || 0;
+  const sa1 = parseFloat(sa1Raw) || 0;
+  const oral = parseFloat(oralRaw) || 0;
+
+  const fa1c  = Math.min(fa1, 20)  / 20 * 10;
+  const fa2c  = Math.min(fa2, 20)  / 20 * 10;
+  const sa1c  = Math.min(sa1, 40)  / 40 * 20;
+  const oralc = Math.min(oral, 10);
+  const total = fa1c + fa2c + sa1c + oralc;
+
+  return {
+    fa1c: fa1c.toFixed(2),
+    fa2c: fa2c.toFixed(2),
+    sa1c: sa1c.toFixed(2),
+    oralc: oralc.toFixed(2),
+    total: total.toFixed(2)
+  };
+}
+
+function getGradeInfo(total50) {
+  const pct = (total50 / 50) * 100;
+  if (pct >= 91) return { grade: 'O',  cls: 'grade-O',     pass: true  };
+  if (pct >= 81) return { grade: 'A+', cls: 'grade-Aplus', pass: true  };
+  if (pct >= 71) return { grade: 'A',  cls: 'grade-A',     pass: true  };
+  if (pct >= 61) return { grade: 'B+', cls: 'grade-Bplus', pass: true  };
+  if (pct >= 51) return { grade: 'B',  cls: 'grade-B',     pass: true  };
+  if (pct >= 41) return { grade: 'C',  cls: 'grade-C',     pass: true  };
+  if (pct >= 35) return { grade: 'D',  cls: 'grade-D',     pass: true  };
+  return           { grade: 'F',  cls: 'grade-F',     pass: false };
+}
+
+// ==============================================================
+// RENDER
+// ==============================================================
+function loadTable() {
+  loadData();
+  renderTable();
+  updatePrintHeader();
+}
+
+function updatePrintHeader() {
+  const cls   = document.getElementById('classSelect').value;
+  const sec   = (document.getElementById('sectionInput').value.trim() || 'A').toUpperCase();
+  const subj  = document.getElementById('subjectInput').value.trim();
+  const exam  = document.getElementById('examSelect').value === 'SA1' ? 'SA-I' : 'SA-II';
+  document.getElementById('printHeader').textContent =
+    `${exam} Examination Results — Class ${cls}${sec}  ${subj ? '| ' + subj : ''}  |  2026-27`;
+}
+
+function renderTable() {
+  // ---- HEADER ----
+  const head = document.getElementById('resHead');
+  head.innerHTML = `
+    <tr>
+      <th class="sticky-1" rowspan="2">#</th>
+      <th class="sticky-2" rowspan="2">Student Name</th>
+      <th colspan="2" style="background:#37474f">FA 1</th>
+      <th colspan="2" style="background:#37474f">FA 2</th>
+      <th colspan="2" style="background:#37474f">SA 1</th>
+      <th colspan="2" style="background:#37474f">Oral</th>
+      <th rowspan="2" class="col-total" style="background:#1565c0;min-width:60px">Total<br>/50</th>
+      <th rowspan="2" class="col-total" style="background:#1565c0;min-width:44px">%</th>
+      <th rowspan="2" class="col-grade" style="background:#1565c0;min-width:44px">Grade</th>
+      <th rowspan="2" style="background:#1565c0;min-width:60px">Result</th>
+    </tr>
+    <tr class="section-head">
+      <th>Raw<br>/20</th><th class="col-conv">Conv<br>/10</th>
+      <th>Raw<br>/20</th><th class="col-conv">Conv<br>/10</th>
+      <th>Raw<br>/40</th><th class="col-conv">Conv<br>/20</th>
+      <th>Raw<br>/10</th><th class="col-conv">Conv<br>/10</th>
+    </tr>`;
+
+  // ---- BODY ----
+  const body = document.getElementById('resBody');
+  if (students.length === 0) {
+    body.innerHTML = `<tr><td colspan="15" class="text-center text-muted py-5">
+      No students. Click <strong>+ Student</strong>, <strong>Bulk Import</strong>, or <strong>Import from Attendance</strong>.
+    </td></tr>`;
+    renderSummary([]);
+    return;
+  }
+
+  const rows = [];
+  const allTotals = [];
+
+  students.forEach(s => {
+    const m = marks[s.id] || {};
+    const fa1Raw  = m.fa1  ?? '';
+    const fa2Raw  = m.fa2  ?? '';
+    const sa1Raw  = m.sa1  ?? '';
+    const oralRaw = m.oral ?? '';
+
+    const hasAny = fa1Raw !== '' || fa2Raw !== '' || sa1Raw !== '' || oralRaw !== '';
+    const calc   = hasAny ? calcRow(fa1Raw, fa2Raw, sa1Raw, oralRaw) : null;
+    const gi     = (calc && hasAny) ? getGradeInfo(parseFloat(calc.total)) : null;
+
+    const totalTd  = calc ? `<td class="col-total">${calc.total}</td>` : `<td class="col-total">-</td>`;
+    const pctTd    = calc ? `<td class="col-total">${((parseFloat(calc.total)/50)*100).toFixed(1)}%</td>` : `<td class="col-total">-</td>`;
+    const gradeTd  = gi   ? `<td class="col-grade ${gi.cls}">${gi.grade}</td>` : `<td class="col-grade">-</td>`;
+    const resultTd = gi   ? `<td class="${gi.pass ? 'col-pass' : 'col-fail'}">${gi.pass ? 'PASS' : 'FAIL'}</td>` : `<td>-</td>`;
+
+    if (calc) allTotals.push(parseFloat(calc.total));
+
+    rows.push(`<tr id="row-${s.id}">
+      <td class="sticky-1">${esc(s.rollNo)}</td>
+      <td class="sticky-2">${esc(s.name)}</td>
+      <td>${inputCell(s.id, 'fa1',  fa1Raw,  20)}</td>
+      <td class="col-conv" id="fa1c-${s.id}">${calc ? calc.fa1c : ''}</td>
+      <td>${inputCell(s.id, 'fa2',  fa2Raw,  20)}</td>
+      <td class="col-conv" id="fa2c-${s.id}">${calc ? calc.fa2c : ''}</td>
+      <td>${inputCell(s.id, 'sa1',  sa1Raw,  40)}</td>
+      <td class="col-conv" id="sa1c-${s.id}">${calc ? calc.sa1c : ''}</td>
+      <td>${inputCell(s.id, 'oral', oralRaw, 10)}</td>
+      <td class="col-conv" id="oralc-${s.id}">${calc ? calc.oralc : ''}</td>
+      ${totalTd}${pctTd}${gradeTd}${resultTd}
+    </tr>`);
+  });
+
+  body.innerHTML = rows.join('');
+  renderSummary(allTotals);
+
+  // ---- FOOTER ----
+  renderFooter(allTotals);
+}
+
+function inputCell(studentId, field, value, max) {
+  return `<input type="number" class="marks-input" id="inp-${studentId}-${field}"
+    value="${value}" min="0" max="${max}" step="0.5"
+    oninput="onMarkInput('${studentId}','${field}',this.value,${max})"
+    onfocus="this.select()" placeholder="">`;
+}
+
+function renderFooter(totals) {
+  const foot = document.getElementById('resFoot');
+  if (totals.length === 0) { foot.innerHTML = ''; return; }
+  const avg  = totals.reduce((a, b) => a + b, 0) / totals.length;
+  const hi   = Math.max(...totals);
+  const lo   = Math.min(...totals);
+  const pass = totals.filter(t => t >= 17.5).length;
+  foot.innerHTML = `<tr>
+    <td class="sticky-1"></td>
+    <td class="sticky-2 text-start">Class Average</td>
+    <td colspan="8"></td>
+    <td class="col-total">${avg.toFixed(2)}</td>
+    <td class="col-total">${((avg/50)*100).toFixed(1)}%</td>
+    <td colspan="2" class="text-muted small">
+      Highest: <strong>${hi}</strong> &nbsp;|&nbsp;
+      Lowest: <strong>${lo}</strong> &nbsp;|&nbsp;
+      Pass: <strong class="text-success">${pass}</strong> &nbsp;|&nbsp;
+      Fail: <strong class="text-danger">${totals.length - pass}</strong>
+    </td>
+  </tr>`;
+}
+
+function renderSummary(totals) {
+  const box = document.getElementById('summaryBox');
+  if (totals.length === 0) { box.innerHTML = ''; return; }
+  const avg  = (totals.reduce((a, b) => a + b, 0) / totals.length).toFixed(2);
+  const hi   = Math.max(...totals).toFixed(2);
+  const lo   = Math.min(...totals).toFixed(2);
+  const pass = totals.filter(t => t >= 17.5).length;
+  const fail = totals.length - pass;
+  box.innerHTML = `
+    <span class="badge bg-primary fs-6">Students: ${totals.length}</span>
+    <span class="badge bg-success fs-6">Pass: ${pass}</span>
+    <span class="badge bg-danger fs-6">Fail: ${fail}</span>
+    <span class="badge bg-info text-dark fs-6">Pass%: ${((pass/totals.length)*100).toFixed(1)}%</span>
+    <span class="badge bg-secondary fs-6">Avg: ${avg}/50</span>
+    <span class="badge bg-warning text-dark fs-6">Highest: ${hi}</span>
+    <span class="badge bg-dark fs-6">Lowest: ${lo}</span>`;
+}
+
+// ==============================================================
+// INPUT HANDLER
+// ==============================================================
+function onMarkInput(studentId, field, value, max) {
+  if (!marks[studentId]) marks[studentId] = {};
+  marks[studentId][field] = value;
+  saveMarks();
+
+  // Highlight if over max
+  const inp = document.getElementById(`inp-${studentId}-${field}`);
+  if (inp) {
+    const v = parseFloat(value);
+    inp.style.background = (!isNaN(v) && v > max) ? '#fde8e8' : (value !== '' ? '#f0fff4' : '');
+  }
+
+  // Recalculate row
+  const m    = marks[studentId];
+  const fa1  = m.fa1  ?? '';
+  const fa2  = m.fa2  ?? '';
+  const sa1  = m.sa1  ?? '';
+  const oral = m.oral ?? '';
+
+  const hasAny = fa1 !== '' || fa2 !== '' || sa1 !== '' || oral !== '';
+  if (!hasAny) {
+    setCalcCells(studentId, '', '', '', '', '', '', '-', '-');
+    return;
+  }
+
+  const calc = calcRow(fa1, fa2, sa1, oral);
+  const gi   = getGradeInfo(parseFloat(calc.total));
+
+  setCalcCells(
+    studentId,
+    calc.fa1c, calc.fa2c, calc.sa1c, calc.oralc,
+    calc.total,
+    ((parseFloat(calc.total)/50)*100).toFixed(1) + '%',
+    `<span class="${gi.cls}">${gi.grade}</span>`,
+    `<span class="${gi.pass ? 'col-pass' : 'col-fail'}">${gi.pass ? 'PASS' : 'FAIL'}</span>`
+  );
+
+  // Refresh footer/summary lazily
+  refreshStats();
+}
+
+function setCalcCells(sid, fa1c, fa2c, sa1c, oralc, total, pct, grade, result) {
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+  set(`fa1c-${sid}`,  fa1c);
+  set(`fa2c-${sid}`,  fa2c);
+  set(`sa1c-${sid}`,  sa1c);
+  set(`oralc-${sid}`, oralc);
+
+  // Total, %, Grade, Result are in fixed positions in the row
+  const row = document.getElementById(`row-${sid}`);
+  if (!row) return;
+  const cells = row.querySelectorAll('td');
+  // Layout: 0=#, 1=name, 2=fa1raw, 3=fa1c, 4=fa2raw, 5=fa2c, 6=sa1raw, 7=sa1c, 8=oralraw, 9=oralc, 10=total, 11=%, 12=grade, 13=result
+  if (cells[10]) cells[10].innerHTML = total;
+  if (cells[11]) cells[11].innerHTML = pct;
+  if (cells[12]) cells[12].innerHTML = grade;
+  if (cells[13]) cells[13].innerHTML = result;
+}
+
+let statsTimer = null;
+function refreshStats() {
+  clearTimeout(statsTimer);
+  statsTimer = setTimeout(() => {
+    const totals = students
+      .map(s => {
+        const m = marks[s.id] || {};
+        if (!m.fa1 && !m.fa2 && !m.sa1 && !m.oral) return null;
+        return parseFloat(calcRow(m.fa1||0, m.fa2||0, m.sa1||0, m.oral||0).total);
+      })
+      .filter(v => v !== null);
+    renderSummary(totals);
+    renderFooter(totals);
+  }, 300);
+}
+
+// ==============================================================
+// STUDENT MANAGEMENT
+// ==============================================================
+function addStudent() {
+  const nameEl = document.getElementById('newStudentName');
+  const rollEl = document.getElementById('newRollNo');
+  const name   = nameEl.value.trim();
+  if (!name) { nameEl.focus(); return; }
+  loadData();
+  const rollNo = rollEl.value.trim() || String(students.length + 1);
+  students.push({ id: nextId(), rollNo, name });
+  saveStudents();
+  nameEl.value = '';
+  rollEl.value = '';
+  bootstrap.Modal.getInstance(document.getElementById('addStudentModal')).hide();
+  renderTable();
+}
+
+function bulkImport() {
+  const text    = document.getElementById('bulkText').value.trim();
+  const replace = document.getElementById('replaceCheck').checked;
+  if (!text) { alert('Please paste student names first.'); return; }
+  loadData();
+  if (replace) { students = []; marks = {}; saveMarks(); }
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  lines.forEach((line, idx) => {
+    const comma = line.indexOf(',');
+    let rollNo, name;
+    if (comma > 0 && !isNaN(line.substring(0, comma).trim())) {
+      rollNo = line.substring(0, comma).trim();
+      name   = line.substring(comma + 1).trim();
+    } else {
+      rollNo = String(students.length + 1);
+      name   = line;
+    }
+    if (name) students.push({ id: nextId() + idx, rollNo, name });
+  });
+  saveStudents();
+  document.getElementById('bulkText').value       = '';
+  document.getElementById('replaceCheck').checked = false;
+  bootstrap.Modal.getInstance(document.getElementById('bulkModal')).hide();
+  renderTable();
+}
+
+function importFromAttendance() {
+  // Try to load students saved by attendance.html (same classKey format)
+  const attKey = 'tvg_att_students_' + classKey();
+  const attStudents = JSON.parse(localStorage.getItem(attKey) || '[]');
+  if (attStudents.length === 0) {
+    alert('No students found in Attendance sheet for Class ' + classKey().replace('_', ' Section ') + '.\n\nAdd students in the Attendance page first.');
+    return;
+  }
+  loadData();
+  // Merge: add those not already present (check by name)
+  const existingNames = new Set(students.map(s => s.name.toLowerCase()));
+  let added = 0;
+  attStudents.forEach(s => {
+    if (!existingNames.has(s.name.toLowerCase())) {
+      students.push({ id: nextId(), rollNo: s.rollNo, name: s.name });
+      added++;
+    }
+  });
+  if (added === 0) {
+    alert('All students from Attendance are already in this Results list.');
+    return;
+  }
+  saveStudents();
+  renderTable();
+  alert(`${added} student(s) imported from Attendance sheet.`);
+}
+
+// ==============================================================
+// EXCEL EXPORT
+// ==============================================================
+function exportExcel() {
+  const cls   = document.getElementById('classSelect').value;
+  const sec   = (document.getElementById('sectionInput').value.trim() || 'A').toUpperCase();
+  const subj  = document.getElementById('subjectInput').value.trim();
+  const exam  = document.getElementById('examSelect').value === 'SA1' ? 'SA-I' : 'SA-II';
+
+  const data = [
+    [`${exam} Examination Results — Class ${cls}${sec}  ${subj ? '| ' + subj : ''}  |  Academic Year 2026-27`],
+    [],
+    ['#', 'Student Name',
+     'FA1 Raw(/20)', 'FA1 Conv(/10)',
+     'FA2 Raw(/20)', 'FA2 Conv(/10)',
+     'SA1 Raw(/40)', 'SA1 Conv(/20)',
+     'Oral Raw(/10)','Oral Conv(/10)',
+     'Total(/50)', '%', 'Grade', 'Result']
+  ];
+
+  students.forEach(s => {
+    const m    = marks[s.id] || {};
+    const fa1  = m.fa1  ?? '';
+    const fa2  = m.fa2  ?? '';
+    const sa1  = m.sa1  ?? '';
+    const oral = m.oral ?? '';
+    const hasAny = fa1 !== '' || fa2 !== '' || sa1 !== '' || oral !== '';
+    if (hasAny) {
+      const calc = calcRow(fa1, fa2, sa1, oral);
+      const gi   = getGradeInfo(parseFloat(calc.total));
+      data.push([s.rollNo, s.name,
+        fa1, calc.fa1c,
+        fa2, calc.fa2c,
+        sa1, calc.sa1c,
+        oral, calc.oralc,
+        calc.total,
+        ((parseFloat(calc.total)/50)*100).toFixed(1) + '%',
+        gi.grade, gi.pass ? 'PASS' : 'FAIL']);
+    } else {
+      data.push([s.rollNo, s.name, '', '', '', '', '', '', '', '', '', '', '', '']);
+    }
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Results');
+  XLSX.writeFile(wb, `Results_${exam.replace('-','')}_Class${cls}${sec}_2026-27.xlsx`);
+}
+
+// ==============================================================
+// INIT
+// ==============================================================
+window.addEventListener('DOMContentLoaded', () => {
+  loadTable();
+  document.getElementById('newStudentName').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addStudent();
+  });
+});
+</script>
+</body>
+</html>
