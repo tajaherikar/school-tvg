@@ -687,6 +687,13 @@ function exportExcel() {
 // ==============================================================
 window.addEventListener('DOMContentLoaded', () => {
   loadTable();
+  
+  // Auto-refresh when class/section/exam changes
+  document.getElementById('classSelect').addEventListener('change', loadTable);
+  document.getElementById('sectionInput').addEventListener('change', loadTable);
+  document.getElementById('examSelect').addEventListener('change', loadTable);
+  document.getElementById('subjectInput').addEventListener('change', loadTable);
+  
   document.getElementById('newStudentName').addEventListener('keydown', e => {
     if (e.key === 'Enter') addStudent();
   });

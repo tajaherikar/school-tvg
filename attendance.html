@@ -692,6 +692,13 @@ window.addEventListener('DOMContentLoaded', () => {
     if (opt.value === mVal) { mSel.value = mVal; break; }
   }
   loadTable();
+  
+  // Auto-refresh when class/section/month changes
+  document.getElementById('classSelect').addEventListener('change', loadTable);
+  document.getElementById('sectionInput').addEventListener('change', loadTable);
+  document.getElementById('monthSelect').addEventListener('change', loadTable);
+  document.getElementById('subjectInput').addEventListener('change', loadTable);
+  
   document.getElementById('newStudentName').addEventListener('keydown', e => {
     if (e.key === 'Enter') addStudent();
   });
