@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exam Results Entry | The Academic Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container": "#e6eeff",
+                        "secondary-fixed": "#a6f4b5",
+                        "surface-dim": "#ccdbf3",
+                        "primary-container": "#2563eb",
+                        "on-primary-fixed": "#00174b",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed-dim": "#8bd79b",
+                        "surface-tint": "#0053db",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-container": "#ffede6",
+                        "outline-variant": "#c3c6d7",
+                        "tertiary": "#943700",
+                        "secondary-container": "#a4f1b2",
+                        "on-secondary-fixed": "#00210b",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#233144",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-container": "#eeefff",
+                        "surface-variant": "#d5e3fc",
+                        "on-secondary-container": "#24703e",
+                        "on-secondary-fixed-variant": "#005226",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "outline": "#737686",
+                        "on-surface": "#0d1c2e",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#004ac6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d5e3fc",
+                        "on-surface-variant": "#434655",
+                        "secondary": "#1f6c3a",
+                        "background": "#f8f9ff",
+                        "tertiary-container": "#bc4800",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface": "#f8f9ff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-background": "#0d1c2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-[#f8f9ff] dark:bg-[#0d1c2e] sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Teacher profile picture" class="w-full h-full object-cover" data-alt="professional headshot of a smiling female teacher in a bright modern classroom setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXuRBsq0RfNt1-eGZfwzkA0qcDXdDztOAP5VNz0yJTgKuyq0YnU17VL52F-jeNFMzawXyUHDmiB1GPd3248kjbHJGVw5SDFx3DqQOb5VKbmGOfdRHYuqbJNS_YLzs1NVz1AY4eAq2cRU967J2Mu3mupKA30ezPDdw_7jxvIXAwNVwk3D27paPvsUogmSebg78VjHxJwCuwQUu3iNSGz4VggB1D-gM9TTTu3a0wQDiwUa-bsEN8t0kX9QvjUtwEc4ZMz6coWq4Mh5s"/>
+</div>
+<span class="text-lg font-bold text-[#004ac6] dark:text-[#2563eb] tracking-tight font-headline">The Academic Curator</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eff4ff] dark:hover:bg-[#1a2b3c] transition-colors">
+<span class="material-symbols-outlined text-[#004ac6] dark:text-[#2563eb]" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-4 pt-4">
+<!-- Selector Section -->
+<section class="bg-surface-container-low rounded-xl p-4 mb-6">
+<div class="flex flex-col gap-4">
+<div>
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider mb-1 block">Active Subject</span>
+<div class="flex items-center justify-between bg-surface-container-lowest p-3 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-fixed flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="functions">functions</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Mathematics</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div>
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider mb-1 block">Assessment Period</span>
+<div class="flex gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-on-primary text-sm font-semibold shadow-md">SA-I (Mid-Term)</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-highest text-on-surface-variant text-sm font-medium">FA-II (Unit Test)</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-surface-container-highest text-on-surface-variant text-sm font-medium">SA-II (Final)</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Entry Table/List Header -->
+<div class="flex justify-between items-center mb-4 px-2">
+<h2 class="font-headline font-bold text-xl">Class 10-B Results</h2>
+<div class="flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+<span>Alphabetical</span>
+</div>
+</div>
+<!-- Student Entry List -->
+<div class="space-y-4">
+<!-- Student Row 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-on-surface">Adrian Shepherd</h3>
+<p class="text-xs text-on-surface-variant font-medium">Roll No: 1024-01</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Grade</span>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-lg font-bold text-lg leading-none">A+</div>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="18"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA2</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="19"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">SA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="58"/>
+</div>
+<div class="flex flex-col items-center justify-center">
+<label class="text-[10px] text-primary font-bold uppercase block mb-1">Total</label>
+<span class="font-headline font-extrabold text-primary text-xl">95</span>
+</div>
+</div>
+</div>
+<!-- Student Row 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border-l-4 border-error">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-on-surface">Beatrix Thorne</h3>
+<p class="text-xs text-on-surface-variant font-medium">Roll No: 1024-02</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Grade</span>
+<div class="bg-error-container text-on-error-container px-3 py-1 rounded-lg font-bold text-lg leading-none">D</div>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="08"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA2</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="12"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">SA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="15"/>
+</div>
+<div class="flex flex-col items-center justify-center">
+<label class="text-[10px] text-primary font-bold uppercase block mb-1">Total</label>
+<span class="font-headline font-extrabold text-primary text-xl">35</span>
+</div>
+</div>
+</div>
+<!-- Student Row 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline font-bold text-on-surface">Cassian Vance</h3>
+<p class="text-xs text-on-surface-variant font-medium">Roll No: 1024-03</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Grade</span>
+<div class="bg-surface-container text-on-primary-container px-3 py-1 rounded-lg font-bold text-lg leading-none">B</div>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="15"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">FA2</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="14"/>
+</div>
+<div>
+<label class="text-[10px] text-outline font-bold uppercase block mb-1">SA1</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg text-center font-bold text-on-surface py-2 focus:ring-2 focus:ring-primary-container" type="number" value="42"/>
+</div>
+<div class="flex flex-col items-center justify-center">
+<label class="text-[10px] text-primary font-bold uppercase block mb-1">Total</label>
+<span class="font-headline font-extrabold text-primary text-xl">71</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Summary & Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-white/80 dark:bg-[#0d1c2e]/80 backdrop-blur-xl shadow-[0_-4px_24px_rgba(13,28,46,0.06)] px-4 pt-4 pb-8 z-50">
+<div class="flex gap-4 mb-4">
+<div class="flex-1 bg-secondary-fixed/30 rounded-xl p-3 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="text-[10px] font-bold text-on-secondary-fixed-variant uppercase">Passing</div>
+<div class="text-lg font-headline font-extrabold leading-tight">28 <span class="text-[10px] font-medium text-outline">Students</span></div>
+</div>
+</div>
+<div class="flex-1 bg-error-container/30 rounded-xl p-3 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="cancel" data-weight="fill" style="font-variation-settings: 'FILL' 1;">cancel</span>
+</div>
+<div>
+<div class="text-[10px] font-bold text-on-error-container uppercase">Failing</div>
+<div class="text-lg font-headline font-extrabold leading-tight">2 <span class="text-[10px] font-medium text-outline">Students</span></div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-headline font-bold text-base shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="publish">publish</span>
+            Publish Results
+        </button>
+</div>
+<!-- Navigation Shell (BottomNavBar) -->
+<!-- Suppressed on this page as it's a Task-Focused sub-page (Exams Entry) -->
+<!-- Added a focused floating 'save' intent if needed, but the requirements asked for Publish in footer -->
+</body></html>

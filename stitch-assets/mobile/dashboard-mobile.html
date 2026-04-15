@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Academic Curator - Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-container": "#e6eeff",
+                    "secondary-fixed": "#a6f4b5",
+                    "surface-dim": "#ccdbf3",
+                    "primary-container": "#2563eb",
+                    "on-primary-fixed": "#00174b",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-fixed-dim": "#8bd79b",
+                    "surface-tint": "#0053db",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-container": "#ffede6",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary": "#943700",
+                    "secondary-container": "#a4f1b2",
+                    "on-secondary-fixed": "#00210b",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#233144",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-primary-container": "#eeefff",
+                    "surface-variant": "#d5e3fc",
+                    "on-secondary-container": "#24703e",
+                    "on-secondary-fixed-variant": "#005226",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "outline": "#737686",
+                    "on-surface": "#0d1c2e",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-low": "#eff4ff",
+                    "primary": "#004ac6",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d5e3fc",
+                    "on-surface-variant": "#434655",
+                    "secondary": "#1f6c3a",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#bc4800",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-background": "#0d1c2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "xxl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bounce-sm { transform: scale(0.95); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased pb-32">
+<!-- TopAppBar -->
+<nav class="sticky top-0 z-50 bg-[#f8f9ff] dark:bg-[#0d1c2e] flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-high">
+<img alt="Teacher Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a friendly female teacher in a brightly lit modern academic setting, soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj8O1P2YdhIVC6sihAOOw7ddjC4wgYgL_zmMlTnTk7ztQgvbK3m1313xoYbvQN58LDKztIX4l9mLGjZOWKSW0pr5ZMuKmrFefc51c0sa6iWdUqCmjEu0vY65ZKIfEsm79h-jmbhxZT2qu4jumejVpW5cEmFkXYyMrRVpdIoKzYXOvgRKbVZTitgSKzajXqNcxJv4tuVVtK_57dwNM-qtng7e7_9f4WF6ozxnd0hAhfrpDgRlnoX8ujPVTIkRiMK_9mGfrdIgNEElY"/>
+</div>
+<span class="text-lg font-bold text-[#004ac6] dark:text-[#2563eb] tracking-tight font-headline">The Academic Curator</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eff4ff] dark:hover:bg-[#1a2b3c] transition-colors active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[#004ac6] dark:text-[#2563eb]" data-icon="notifications">notifications</span>
+</button>
+</nav>
+<main class="px-6 pt-4 space-y-8">
+<!-- Welcome Section -->
+<section class="space-y-1">
+<p class="text-sm font-semibold text-primary uppercase tracking-widest font-label">Current Term: 2023-2024</p>
+<h1 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface leading-tight">
+                Good morning,<br/>Professor Sarah
+            </h1>
+</section>
+<!-- Stats Grid (Asymmetric Bento Style) -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Attendance Card (Large) -->
+<div class="col-span-2 bg-surface-container-lowest rounded-xxl p-6 flex items-center justify-between shadow-sm border border-outline-variant/10">
+<div class="space-y-2">
+<p class="text-sm font-medium text-on-surface-variant font-label">Students Present Today</p>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-extrabold font-headline text-on-surface">28</span>
+<span class="text-xl font-bold font-headline text-on-surface-variant">/32</span>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-semibold text-secondary font-label">92% Attendance</span>
+</div>
+</div>
+<div class="relative w-20 h-20">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="text-surface-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path>
+<path class="text-secondary stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="92, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="how_to_reg">how_to_reg</span>
+</div>
+</div>
+</div>
+<!-- Exam Avg Card -->
+<div class="col-span-1 bg-surface-container-low rounded-xxl p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary-container/10 rounded-xl">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="analytics">analytics</span>
+</div>
+<span class="text-[10px] font-bold text-secondary uppercase bg-secondary-container/30 px-2 py-1 rounded-full">+4.2%</span>
+</div>
+<div>
+<p class="text-xs font-medium text-on-surface-variant font-label">Recent Exam Avg</p>
+<h3 class="text-2xl font-bold font-headline text-on-surface">84.5%</h3>
+</div>
+<!-- Mini Trend Chart -->
+<div class="flex items-end gap-1 h-8">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-2/3"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-1/3"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-3/4"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-full"></div>
+</div>
+</div>
+<!-- Active Tasks Card -->
+<div class="col-span-1 bg-surface-container-lowest rounded-xxl p-5 flex flex-col justify-between border border-outline-variant/10">
+<div class="p-2 bg-tertiary-container/10 w-fit rounded-xl">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="assignment_late">assignment_late</span>
+</div>
+<div class="mt-4">
+<p class="text-xs font-medium text-on-surface-variant font-label">Pending Grades</p>
+<h3 class="text-2xl font-bold font-headline text-on-surface">12</h3>
+<p class="text-[10px] text-on-surface-variant mt-1 italic">Due by Friday</p>
+</div>
+</div>
+</section>
+<!-- Quick Tools Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h2 class="text-xl font-bold font-headline text-on-surface">Quick Tools</h2>
+<button class="text-xs font-bold text-primary font-label uppercase tracking-wider">See All</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Tool: Mark Attendance -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xxl hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-2xl shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="checklist_rtl">checklist_rtl</span>
+</div>
+<span class="mt-3 text-sm font-semibold text-on-surface font-label">Mark Attendance</span>
+</button>
+<!-- Tool: Input Grades -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xxl hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-2xl shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="edit_square">edit_square</span>
+</div>
+<span class="mt-3 text-sm font-semibold text-on-surface font-label">Input Grades</span>
+</button>
+<!-- Tool: View Reports -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xxl hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-2xl shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-tertiary text-2xl" data-icon="bar_chart_4_bars">bar_chart_4_bars</span>
+</div>
+<span class="mt-3 text-sm font-semibold text-on-surface font-label">View Reports</span>
+</button>
+<!-- Tool: Contact Parents -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xxl hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<div class="w-12 h-12 flex items-center justify-center bg-white rounded-2xl shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="contact_mail">contact_mail</span>
+</div>
+<span class="mt-3 text-sm font-semibold text-on-surface font-label">Contact Parents</span>
+</button>
+</div>
+</section>
+<!-- Up Next / Editorial Card -->
+<section class="bg-primary overflow-hidden rounded-xxl relative min-h-[160px] flex items-center">
+<div class="absolute inset-0 opacity-20">
+<img alt="Classroom" class="w-full h-full object-cover" data-alt="Overhead shot of organized classroom desks with books and pencils in a bright aesthetic with soft blue shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMUCUfdX8A8_gOlGHQCOmCBYsxNLaNy5OpG-CNz6AEVt24wQCn6Zd07PQeRkviUVn_Nq-g6pPmop_bdM5GY6CyGME9rP9_g-BPl2E1TiF-zDHHYazi5I8Kwvb5q14XssHHB-FFQt0t04tz91iQfP5M78Qg4ZgnsHE-CCssFiLlWNr50gb0sycRw95DJ6FxvO7OAAWQqlcKOS4Fcu6SDGq9x2K83UFWVVxMPi-HXO2CY2fbWYWa9QVgugOsgNbNkg9Zt0ZVoEXoJR8"/>
+</div>
+<div class="relative z-10 p-6 space-y-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded-full text-[10px] font-bold uppercase font-label">Next Lesson</span>
+<h4 class="text-xl font-bold font-headline text-on-primary">Advanced Calculus - Room 302</h4>
+<p class="text-on-primary/80 text-sm font-medium">Starts in 15 minutes</p>
+</div>
+<div class="absolute right-6 bg-white/20 backdrop-blur-md p-3 rounded-2xl">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="schedule">schedule</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-[#0d1c2e]/80 backdrop-blur-xl shadow-[0_-4px_24px_rgba(13,28,46,0.06)] rounded-t-[1.5rem]">
+<!-- Dashboard (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#eff4ff] dark:bg-[#2563eb]/20 text-[#004ac6] dark:text-[#2563eb] rounded-2xl px-5 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[11px] font-semibold Inter tracking-wide uppercase mt-1">Dashboard</span>
+</a>
+<!-- Attendance -->
+<a class="flex flex-col items-center justify-center text-[#0d1c2e] dark:text-[#f8f9ff] opacity-60 px-5 py-2 hover:opacity-100" href="#">
+<span class="material-symbols-outlined" data-icon="how_to_reg">how_to_reg</span>
+<span class="text-[11px] font-semibold Inter tracking-wide uppercase mt-1">Attendance</span>
+</a>
+<!-- Exams -->
+<a class="flex flex-col items-center justify-center text-[#0d1c2e] dark:text-[#f8f9ff] opacity-60 px-5 py-2 hover:opacity-100" href="#">
+<span class="material-symbols-outlined" data-icon="grading">grading</span>
+<span class="text-[11px] font-semibold Inter tracking-wide uppercase mt-1">Exams</span>
+</a>
+<!-- Students -->
+<a class="flex flex-col items-center justify-center text-[#0d1c2e] dark:text-[#f8f9ff] opacity-60 px-5 py-2 hover:opacity-100" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-[11px] font-semibold Inter tracking-wide uppercase mt-1">Students</span>
+</a>
+</footer>
+</body></html>

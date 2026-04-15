@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#24703e",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface": "#0d1c2e",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#a4f1b2",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "surface-variant": "#d5e3fc",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-surface": "#233144",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#005226",
+                        "secondary": "#1f6c3a",
+                        "outline": "#737686",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#bc4800",
+                        "surface": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#8bd79b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-tint": "#0053db",
+                        "on-secondary-fixed": "#00210b",
+                        "surface-container-low": "#eff4ff",
+                        "surface-dim": "#ccdbf3",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-bright": "#f8f9ff",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "on-background": "#0d1c2e",
+                        "surface-container-highest": "#d5e3fc",
+                        "on-surface-variant": "#434655",
+                        "tertiary": "#943700",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-container": "#eeefff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e6eeff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#a6f4b5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d5e3fc; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 z-50">
+<div class="px-6 py-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<span class="text-xl font-bold text-blue-700 dark:text-blue-400 font-['Manrope'] tracking-tight">ScholarSync</span>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Academic Curator</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Manrope'] font-semibold tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-['Manrope'] font-semibold tracking-tight">Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-blue-700 dark:text-blue-400 font-bold border-r-4 border-blue-700 bg-blue-50/50 translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-['Manrope'] font-semibold tracking-tight">Exams</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Manrope'] font-semibold tracking-tight">Students</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-['Manrope'] font-semibold tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="p-6">
+<button class="w-full bg-primary hover:bg-primary-container text-white py-3 rounded-full flex items-center justify-center gap-2 font-bold transition-all shadow-lg shadow-blue-500/20">
+<span class="material-symbols-outlined">add</span>
+<span>New Entry</span>
+</button>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 border-b border-slate-100/50">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-50 border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search student results..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-r border-slate-200 pr-6">
+<button class="relative text-slate-600 hover:text-blue-600 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-slate-600 hover:text-blue-600 transition-opacity">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">Alex Thompson</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">Senior Mathematics Lead</p>
+</div>
+<img alt="Teacher Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-50" data-alt="professional portrait of a male teacher in a clean office setting, soft natural lighting, high-end editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu6EM6H0wRGvdXOmEJIe2bUeFZFn-zLW1m2S7ugkKDu43l2JYkLpY7_hK9RpMyuHtDqwvKWnmuHxqquN-MhLAYdNvHeJJffxLrOL1-0X2V_9FoYrMIk9mui8-2ll8GPDORuzv5nyqyytd5lq9RB9f3EgpiJ7OEtXt-yHM68eANJ1tWq-xwPgFNhL9s40_M-VtVyJJBg9J1NhpvIw2Mxaea1zz-HOUHz6CkXNs77SgSDvb-FgoVeBhAU2RzyfiSFuzhUORS3ZxcxAA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-32 px-8 min-h-screen bg-surface">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex gap-2 text-xs font-bold text-primary mb-2 tracking-widest uppercase">
+<span>Exams</span>
+<span class="text-slate-300">/</span>
+<span class="text-slate-500">Academic Records</span>
+</nav>
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Student Performance</h1>
+<p class="text-on-surface-variant font-medium">Viewing performance analytics and component scores for Grade 10-A.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-slate-500 uppercase ml-1">Subject</label>
+<div class="relative">
+<select class="appearance-none bg-surface-container-highest border-none rounded-xl px-4 py-2.5 pr-10 text-sm font-semibold text-primary focus:ring-2 focus:ring-primary/20 min-w-[160px]">
+<option>Mathematics</option>
+<option>Advanced Physics</option>
+<option>English Lit</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-primary text-sm">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-slate-500 uppercase ml-1">Assessment</label>
+<div class="relative">
+<select class="appearance-none bg-surface-container-highest border-none rounded-xl px-4 py-2.5 pr-10 text-sm font-semibold text-primary focus:ring-2 focus:ring-primary/20 min-w-[140px]">
+<option>Term 1</option>
+<option>Mid-Term</option>
+<option>Final Exam</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-primary text-sm">expand_more</span>
+</div>
+</div>
+<button class="bg-surface-container-low text-primary p-2.5 rounded-xl self-end hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Stats (Top) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-slate-50">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-primary-fixed text-primary rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+</span>
+<span class="text-[10px] font-bold text-secondary flex items-center gap-1 bg-secondary-container px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 100%
+                    </span>
+</div>
+<p class="text-sm font-medium text-slate-500">Total Students</p>
+<h3 class="text-3xl font-extrabold">32</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-slate-50">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-secondary-fixed text-secondary rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+<span class="text-xs font-bold text-slate-400">Target 80%</span>
+</div>
+<p class="text-sm font-medium text-slate-500">Class Average</p>
+<h3 class="text-3xl font-extrabold text-secondary">84.5%</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-slate-50">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-tertiary-fixed text-tertiary rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+<span class="text-xs font-bold text-slate-400">Min 40%</span>
+</div>
+<p class="text-sm font-medium text-slate-500">Pass Percentage</p>
+<h3 class="text-3xl font-extrabold">93.7%</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-slate-50">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-error-container text-error rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</span>
+</div>
+<p class="text-sm font-medium text-slate-500">Needs Attention</p>
+<h3 class="text-3xl font-extrabold text-error">2</h3>
+</div>
+</div>
+<!-- Data Grid Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-slate-100 overflow-hidden shadow-sm">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100">Student Name</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 text-center">FA1 (20)</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 text-center">FA2 (20)</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 text-center">SA1 (60)</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 text-center">Total (100)</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100 text-center">Grade</th>
+<th class="px-6 py-5 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-100">Trend</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Student 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-xs font-bold text-primary">AA</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Aditi Agarwal</p>
+<p class="text-[10px] text-slate-400">ID: SCH-2024-001</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">18.5</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">19.0</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">56.0</td>
+<td class="px-6 py-4 text-center">
+<span class="text-base font-extrabold text-primary">93.5</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-extrabold rounded-full">A+</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-full h-full bg-secondary"></div>
+</div>
+</td>
+</tr>
+<!-- Student 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-500">BM</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Benjamin Miller</p>
+<p class="text-[10px] text-slate-400">ID: SCH-2024-002</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">14.0</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">15.5</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">42.0</td>
+<td class="px-6 py-4 text-center">
+<span class="text-base font-extrabold text-on-surface">71.5</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-[11px] font-extrabold rounded-full">B</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-[72%] h-full bg-primary"></div>
+</div>
+</td>
+</tr>
+<!-- Student 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors bg-error/5">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-xs font-bold text-error">CW</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Chloe Watson</p>
+<p class="text-[10px] text-error font-bold uppercase tracking-tight">Warning State</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-semibold text-sm text-error">08.0</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">10.0</td>
+<td class="px-6 py-4 text-center font-semibold text-sm text-error">18.0</td>
+<td class="px-6 py-4 text-center">
+<span class="text-base font-extrabold text-error">36.0</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-[11px] font-extrabold rounded-full">D</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="w-[36%] h-full bg-error"></div>
+</div>
+</td>
+</tr>
+<!-- Student 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-xs font-bold text-primary">DR</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Daniel Rodriguez</p>
+<p class="text-[10px] text-slate-400">ID: SCH-2024-004</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">17.0</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">16.5</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">48.0</td>
+<td class="px-6 py-4 text-center">
+<span class="text-base font-extrabold text-on-surface">81.5</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-secondary-container/50 text-on-secondary-container text-[11px] font-extrabold rounded-full">A</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-[82%] h-full bg-primary"></div>
+</div>
+</td>
+</tr>
+<!-- Student 5 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-xs font-bold text-tertiary">ET</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Elena Thorne</p>
+<p class="text-[10px] text-slate-400">ID: SCH-2024-005</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">19.5</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">18.5</td>
+<td class="px-6 py-4 text-center font-semibold text-sm">58.0</td>
+<td class="px-6 py-4 text-center">
+<span class="text-base font-extrabold text-primary">96.0</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-extrabold rounded-full">A+</span>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-full h-full bg-secondary"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination-like Footer of table -->
+<div class="px-6 py-4 bg-slate-50/50 flex justify-between items-center border-t border-slate-100">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-tight">Showing 5 of 32 Students</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-600 hover:bg-slate-50">2</button>
+<button class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-600 hover:bg-slate-50">3</button>
+<button class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Stats Bar -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-16rem)] bg-white/90 backdrop-blur-xl border-t border-slate-200 px-8 py-4 z-40 flex justify-between items-center">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-4">
+<div class="text-right border-r border-slate-200 pr-4">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Passing Rate</p>
+<p class="text-lg font-extrabold text-secondary">30 / 32 <span class="text-xs font-medium text-slate-400 ml-1">Students</span></p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Fail/At Risk</p>
+<p class="text-lg font-extrabold text-error">02 / 32 <span class="text-xs font-medium text-slate-400 ml-1">Students</span></p>
+</div>
+</div>
+<div class="hidden lg:flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full ring-2 ring-white bg-slate-200 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a male student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnX43b6sRswMc-pKEfpEGN8A3iQRd9Ul0iZemw_epuoCG2LirecvkvQ9i-UtT8rqApAtpCqDQvb-JMMgJtvCbJtdDi6d9JbHM2etX_z-TuQ57ug0Ddbpvq48qMHx9ZgMFNPQufgc8FFOnYEGkbs-ms21qvhysS5DdE8NKKzONsI5iDNzvO3202N9zHfhoMIcF5QSrk22LaNwHfAjSo6cAFOA_ga0LrtR-9sE7EC5BbCPm9w_uYAmiAk7LG0pJaEcipEKK2WxA1meI"/>
+</div>
+<div class="w-8 h-8 rounded-full ring-2 ring-white bg-slate-200 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a female student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1D25iOY7beKYgMpmiR-evZMj3sV02GrqnnQDlRuRgk5-A7M3wlGGMQ_SWJBSXDRl1uqUGxMVTuO8_VRXe7i_mwN5I55oK-guJkk2Id_logWZ-49_pRdvdSpL4GuuSFsFeb9cfeCBlrm-qZpVTTIj6wRbtImczEP1ZM2lxRhL-NqbjUU1SeBFTLUFEOGQksiKByd4uua6awR6S_j89dLx091K323fUN1Tt9O7MbrXWoGZN7qE-CbXFYFxo4IIcJTcI6sqhCYeoqZo"/>
+</div>
+<div class="w-8 h-8 rounded-full ring-2 ring-white bg-slate-300 flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+27</div>
+</div>
+<p class="text-xs font-medium text-slate-500">Results ready for review</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 rounded-full text-slate-600 font-bold hover:bg-slate-50 transition-colors text-sm">Save Draft</button>
+<button class="bg-primary hover:bg-primary-container text-white px-8 py-3 rounded-full flex items-center gap-2 font-bold transition-all shadow-xl shadow-blue-500/30">
+<span class="material-symbols-outlined text-sm">cloud_upload</span>
+<span>Publish Results</span>
+</button>
+</div>
+</footer>
+</body></html>

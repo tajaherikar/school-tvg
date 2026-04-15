@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00174b",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-container": "#eeefff",
+                    "surface-bright": "#f8f9ff",
+                    "primary-container": "#2563eb",
+                    "on-error": "#ffffff",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c3c6d7",
+                    "on-tertiary-fixed": "#360f00",
+                    "tertiary": "#943700",
+                    "primary": "#004ac6",
+                    "inverse-primary": "#b4c5ff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-surface-variant": "#434655",
+                    "surface-tint": "#0053db",
+                    "on-surface": "#0d1c2e",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "tertiary-container": "#bc4800",
+                    "secondary-container": "#a4f1b2",
+                    "secondary-fixed-dim": "#8bd79b",
+                    "surface": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d5e3fc",
+                    "on-secondary-fixed-variant": "#005226",
+                    "surface-container": "#e6eeff",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-container": "#24703e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#1f6c3a",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed": "#00210b",
+                    "surface-dim": "#ccdbf3",
+                    "outline": "#737686",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#a6f4b5",
+                    "on-tertiary-container": "#ffede6",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "inverse-surface": "#233144",
+                    "surface-container-highest": "#d5e3fc",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "error-container": "#ffdad6",
+                    "on-background": "#0d1c2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Login Container -->
+<main class="min-h-screen flex items-stretch overflow-hidden">
+<!-- Left Side: Editorial Content & Brand (Academic Curator) -->
+<section class="hidden lg:flex lg:w-1/2 relative bg-primary-container items-center justify-center p-12 overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Library interior" class="w-full h-full object-cover opacity-40 mix-blend-overlay" data-alt="Interior of a modern academic library with vast bookshelves, soft natural lighting through high windows, and a serene scholarly atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcTT-D3RavKcFr4CnwNq5yGeHgoztsS7YhGHATN2ucWVIDXS8HVhWahrph-lHdUo3GIR2pCV2VdTnNsOHRSHgnr0ITYR4WdjDCFB_XQEoCVz2eAHwoHQz380SHs4NM4DpC7D5ZSp0x58xo3X1OmMq_Mv1DibxHaa1u0ZV9OPXGDRGlSJ9E8DpZoZyLgvc97Y6GJiluj9gESGDiaNvo-sspcJeeHdz5_UOYtQCLtyjPpk-zCTCOuLsOVKxn4oSbKVy-HxveV3UhVtM"/>
+<div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container/80 to-primary/40"></div>
+</div>
+<!-- Content Overlay -->
+<div class="relative z-10 max-w-lg text-on-primary">
+<div class="mb-12">
+<span class="text-3xl font-headline font-black tracking-tighter text-on-primary">ScholarSync</span>
+</div>
+<h1 class="text-5xl font-headline font-extrabold leading-tight mb-6 tracking-tight">
+                    The Academic <br/> Curator.
+                </h1>
+<p class="text-lg text-primary-fixed leading-relaxed font-medium opacity-90">
+                    Empowering educators with premium data management and curated insights. Step into your refined classroom experience.
+                </p>
+<!-- Signature App Metric Display (Tonal Layering example) -->
+<div class="mt-12 p-6 rounded-xl glass-panel border border-white/10 shadow-2xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-on-surface-variant font-bold">Today's Attendance</p>
+<p class="text-2xl font-headline font-bold text-on-surface">98.4% Average</p>
+</div>
+</div>
+<!-- Exam Progress Rail -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span>Grading Progress</span>
+<span>84% Complete</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[84%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Login Form -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Logo -->
+<div class="lg:hidden mb-12 flex justify-center">
+<span class="text-3xl font-headline font-black tracking-tighter text-primary">ScholarSync</span>
+</div>
+<div class="mb-10 text-center lg:text-left">
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-2 tracking-tight">Welcome Back</h2>
+<p class="text-on-surface-variant">Access your academic workstation.</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block text-sm font-label font-semibold text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-lg">mail</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline transition-all" id="email" name="email" placeholder="teacher@scholarsync.edu" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="block text-sm font-label font-semibold text-on-surface-variant ml-1" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-lg">lock</span>
+</div>
+<input class="block w-full pl-11 pr-4 py-3.5 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline transition-all" id="password" name="password" placeholder="••••••••••••" type="password"/>
+</div>
+</div>
+<!-- Options -->
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary focus:ring-primary border-outline-variant rounded" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm font-label text-on-surface-variant" for="remember-me">
+                                Remember Me
+                            </label>
+</div>
+<a class="text-sm font-label font-semibold text-primary hover:text-primary-container transition-colors" href="#">
+                            Forgot Password?
+                        </a>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 px-6 bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold rounded-full shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                        Sign In
+                    </button>
+<!-- Divider -->
+<div class="relative py-4">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-container-highest"></div>
+</div>
+<div class="relative flex justify-center text-sm font-label uppercase tracking-widest">
+<span class="bg-surface px-4 text-outline">Or continue with</span>
+</div>
+</div>
+<!-- SSO Option -->
+<button class="w-full flex items-center justify-center gap-3 py-4 px-6 bg-surface-container-lowest border border-outline-variant/30 text-on-surface font-label font-semibold rounded-full hover:bg-surface-container-low transition-colors shadow-sm" type="button">
+<img alt="Google logo" class="w-5 h-5" data-alt="The official Google 'G' icon with multi-colored segments on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8R9rmShU5sgoCkUExlsLPL7lohlqPz6ekD_BMS8MbA6mC1vE9k8xhodrgbrAOUUTRJFcNWjDQyYbfNzknb3EBkk66VXSU1IbQTWC2KV019fe3H8lGIHX4iMRXK6Xlx7HR7NPJLg4VnuWySKJ_SrlgTQTiXVyqCVhpI1L55yoB1EXrcJqu2bAYFUmiL-elH_tP9MQD6vaEmiS7eUobErvRez1wmSh0hPM7RBc4GT3Sun_EC8P-KiP0Cub1ipGLbgKXbTJgbtXDbxk"/>
+                        Sign in with Google
+                    </button>
+</form>
+<div class="mt-10 text-center">
+<p class="text-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="text-primary font-bold hover:underline" href="#">Request Institution Access</a>
+</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component as defined in JSON -->
+<footer class="w-full px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-surface border-t border-slate-100 dark:border-slate-800">
+<div class="text-lg font-bold text-primary font-headline">ScholarSync</div>
+<div class="text-slate-500 text-sm font-body">© 2024 ScholarSync. Academic Excellence Curated.</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-slate-500 text-sm font-body hover:underline decoration-primary transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 text-sm font-body hover:underline decoration-primary transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 text-sm font-body hover:underline decoration-primary transition-all duration-300" href="#">Security</a>
+<a class="text-slate-500 text-sm font-body hover:underline decoration-primary transition-all duration-300" href="#">Support</a>
+</div>
+</footer>
+</body></html>
